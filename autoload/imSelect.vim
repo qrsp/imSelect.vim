@@ -35,7 +35,6 @@ function! imselect#toggle(mode)
       autocmd InsertLeavePre * py3 imselectUtil.normal()
       autocmd CmdlineEnter [/\?] py3 imselectUtil.insert()
       autocmd CmdlineLeave [/\?] py3 imselectUtil.normal()
-      " autocmd FocusGained * py3 imselectUtil.focus()
     augroup END
   endif
 
@@ -43,13 +42,13 @@ function! imselect#toggle(mode)
 endfunction
 
 function! imselect#insert_select(offset)
-  let g:imselect_insert_engines_idx = (g:ibus_insert_engines_idx + a:offset) % len(g:ibus_insert_engines)
+  let g:imselect_insert_engines_idx = (g:imselect_insert_engines_idx + a:offset) % len(g:imselect_insert_engines)
   py3 imselectUtil.insert()
   return ""
 endfunction
 
 function! imselect#normal_select(offset)
-  let g:imselect_normal_engines_idx = (g:ibus_normal_engines_idx + a:offset) % len(g:ibus_normal_engines)
+  let g:imselect_normal_engines_idx = (g:imselect_normal_engines_idx + a:offset) % len(g:imselect_normal_engines)
   py3 imselectUtil.normal()
   return ""
 endfunction
